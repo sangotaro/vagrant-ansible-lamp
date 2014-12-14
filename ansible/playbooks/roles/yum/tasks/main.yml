@@ -1,0 +1,13 @@
+---
+
+- name: Install Software Collections (SCL)
+  yum: name=centos-release-SCL state=present
+  sudo: true
+
+- name: Install epel repo
+  yum: name=epel-release state=present
+  sudo: true
+
+- name: Install remi repo
+  yum: name=http://rpms.famillecollet.com/enterprise/remi-release-6.rpm state=present
+  sudo: true

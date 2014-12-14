@@ -1,0 +1,13 @@
+---
+
+- name: Set timezone
+  shell: cp /usr/share/zoneinfo/Japan /etc/localtime
+  sudo: true
+
+- name: Install sl command
+  yum: name=sl state=latest enablerepo=epel
+  sudo: true
+
+- name: Install Git
+  yum: name=git state=latest
+  sudo: true

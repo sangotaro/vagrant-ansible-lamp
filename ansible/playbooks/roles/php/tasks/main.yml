@@ -1,0 +1,44 @@
+---
+
+- name: Install PHP 5.5 using remi repo
+  yum: name={{ item }} enablerepo=remi,remi-php55 state=present
+  with_items:
+    - php
+    - php-cli
+    - php-common
+    - php-devel
+    - php-mbstring
+    - php-mcrypt
+    - php-mysqli
+    - php-opcache
+    - php-pdo
+    - php-pear
+    - php-pecl-memcache
+    - php-pecl-xdebug
+    - php-php-gettext
+    - php-phpunit-PHPUnit
+  sudo: true
+  notify: restart httpd
+
+- name: Modify php.ini file
+  replace: dest=/etc/php.ini regexp=';date.timezone =' replace='date.timezone = Asia/Tokyo' backup=yes
+  sudo: true
+
+- name: Copy the xdebug.ini file
+  template: src=xdebug.ini.j2 dest=/etc/php.d/xdebug.ini
+  notify: restart httpd
+  sudo: true
+
+- name: Install phpMyAdmin
+  yum: name={{ item.name }} enablerepo={{ item.repo }} state=present
+  with_items:
+    - { name: gd-last, repo: remi }
+    - { name: php-gd, repo: remi-php55 }
+    - { name: ImageMagick-last, repo: remi }
+    - { name: phpMyAdmin, repo: remi-php55 }
+  sudo: true
+
+- name: Copy the phpMyAdmin.conf file
+  template: src=phpMyAdmin.conf.j2 dest=/etc/httpd/conf.d/phpMyAdmin.conf
+  notify: restart httpd
+  sudo: true

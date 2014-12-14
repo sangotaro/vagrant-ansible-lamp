@@ -1,0 +1,13 @@
+---
+
+- name: start mysqld
+  service: name=mysqld state=started
+  sudo: true
+
+- name: restart mysqld
+  service: name=mysqld state=restarted
+  sudo: true
+
+- name: stop mysqld
+  service: name=mysqld state=stopped
+  sudo: true

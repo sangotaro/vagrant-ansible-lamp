@@ -1,0 +1,35 @@
+---
+
+- name: Remove MySQL 5.1
+  yum: name=mysql-libs state=absent
+  sudo: true
+
+- name: Install MySQL 5.5
+  yum: name={{ item }} state=present enablerepo=remi
+  with_items:
+    - mysql
+    - mysql-devel
+    - mysql-server
+    - mysql-utilities
+  sudo: true
+
+- name: Copy the my.cnf file 
+  template: src=my.cnf.j2 dest=/etc/my.cnf
+  notify: restart mysqld
+  sudo: true
+
+- name: Install MySQL-python
+  yum: name=MySQL-python state=present
+  sudo: true
+
+# sudo service mysqld start
+# sudo chkconfig mysqld on
+- name: Ensure MySQL service is started and enabled at boot
+  service: name=mysqld state=started enabled=yes
+  sudo: true
+
+- name: Change MySQL root user's password
+  mysql_user: name=root password=root host=localhost
+
+- name: Configure MySQL database
+  template: src=mysql_user.my.cnf.j2 dest=/home/{{ user }}/.my.cnf

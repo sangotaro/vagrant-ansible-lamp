@@ -1,0 +1,9 @@
+---
+
+- name: start httpd
+  service: name=httpd state=started
+  sudo: true
+
+- name: restart httpd
+  service: name=httpd state=restarted
+  sudo: true

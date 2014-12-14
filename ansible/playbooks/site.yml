@@ -1,0 +1,14 @@
+---
+- hosts: all
+  name: "CentOS 6.5"
+  vars_files:
+    - ../settings.yml
+
+  roles:
+    - role: yum
+    - role: common
+    - role: jenkins
+    - role: apache
+    - role: mysql
+    - role: memcached
+    - role: php

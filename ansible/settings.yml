@@ -1,0 +1,11 @@
+---
+
+# Vagrantfile configuration.
+box: 'centos65'
+hostname: 'hostname'
+ip: '192.168.33.10'
+synced_folder: './www'
+
+# MySQL configurations.
+mysql_root_password: 'root'
+mysql_port: 3306
