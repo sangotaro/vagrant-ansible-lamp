@@ -14,6 +14,7 @@
     - php-pdo
     - php-pear
     - php-pecl-memcache
+    - php-pecl-msgpack
     - php-pecl-xdebug
     - php-php-gettext
     - php-phpunit-PHPUnit
