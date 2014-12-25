@@ -11,3 +11,7 @@
 - name: Install Git
   yum: name=git state=latest
   sudo: true
+
+- name: Install telnet
+  yum: name=telnet state=latest
+  sudo: true
