@@ -15,3 +15,7 @@
 - name: Install telnet
   yum: name=telnet state=latest
   sudo: true
+
+- name: Install wget
+  yum: name=wget state=latest
+  sudo: true

@@ -43,3 +43,13 @@
   template: src=phpMyAdmin.conf.j2 dest=/etc/httpd/conf.d/phpMyAdmin.conf
   notify: restart httpd
   sudo: true
+
+- name: Install phpMemcachedAdmin
+  yum: name=phpMemcachedAdmin state=present
+  sudo: true
+
+- name: Copy the phpMemcachedAdmin.conf file
+  template: src=phpMemcachedAdmin.conf.j2 dest=/etc/httpd/conf.d/phpMemcachedAdmin.conf
+  notify: restart httpd
+  sudo: true
+
