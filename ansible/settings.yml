@@ -4,7 +4,7 @@
 box: 'centos65'
 hostname: 'hostname'
 ip: '192.168.33.10'
-synced_folder: './www'
+synced_folder: '/home/vagrant/app'
 
 # MySQL configurations.
 mysql_root_password: 'root'

@@ -1,6 +1,6 @@
 ---
-- hosts: guest
-  name: "Guest OS"
+- hosts: local
+  name: "Guest OS (Ansible on guest)"
   vars_files:
     - ../settings.yml
 
